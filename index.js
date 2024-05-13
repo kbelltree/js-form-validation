@@ -43,7 +43,22 @@ function getMatchingErrorMessages(controlEl, messageObj) {
   if (controlEl.validity.tooShort || controlEl.validity.tooLong) {
     errorMessageArr.push(messageObj.length);
   }
+  if (controlEl.dataset.password === "invalid") {
+    errorMessageArr.push(messageObj.mismatch);
+  }
   return errorMessageArr;
+}
+
+function confirmPasswordsMatch(pw2ControlEl) {
+  const pw1Value = document.getElementById("password1").value;
+  const pw2Value = pw2ControlEl.value;
+  const isMatch = pw1Value === pw2Value;
+  if (!isMatch) {
+    pw2ControlEl.dataset.password = "invalid";
+  } else {
+    pw2ControlEl.dataset.password = "";
+  }
+  return isMatch;
 }
 
 function accessErrorMessageDiv(controlElId) {
@@ -54,15 +69,15 @@ function accessErrorMessageDiv(controlElId) {
   return document.querySelector(`#${controlElId} + .error-message`);
 }
 
-function emptyErrorMessageDiv(divEl) {
-  while (divEl.firstChild) {
-    divEl.removeChild(divEl.firstChild);
+function emptyErrorMessageDiv(errorMessageDivEl) {
+  while (errorMessageDivEl.firstChild) {
+    errorMessageDivEl.removeChild(errorMessageDivEl.firstChild);
   }
 }
 
 function displayErrorMessage(errorMessageDiv, messageArr) {
   if (messageArr.length === 0) {
-    console.warn(`there are not any error messages to display.`);
+    console.warn(`There are not any validation error messages to display.`);
     return;
   } else {
     errorMessageDiv;
@@ -91,7 +106,11 @@ function notifyInvalidEntry(controlEl) {
 function validateEntry(e) {
   e.preventDefault();
   const controlEl = e.target;
-  if (!controlEl.checkValidity()) {
+  let doPasswordsMatch = false;
+  if (controlEl.id === "password2") {
+    doPasswordsMatch = confirmPasswordsMatch(controlEl);
+  }
+  if (!controlEl.checkValidity() || !doPasswordsMatch) {
     notifyInvalidEntry(controlEl);
   } else {
     controlEl.classList.add("is-valid");
@@ -101,14 +120,18 @@ function validateEntry(e) {
 function validateForm(e) {
   const form = e.target;
   const formControls = form.querySelectorAll("input, select");
-  if (!form.checkValidity()) {
+  const pw2ControlEl = form.querySelector("#password2");
+  const doPasswordsMatch = confirmPasswordsMatch(pw2ControlEl);
+
+  if (!form.checkValidity() || !doPasswordsMatch) {
     formControls.forEach((controlEl) => notifyInvalidEntry(controlEl));
-    console.warn("submit cancelled.");
+    console.warn(`Submission cancelled.`);
+    // set preventDefault() to keep from submitting the form
     e.preventDefault();
   }
 }
 
-function refreshForm(formEl){
+function refreshForm(formEl) {
   errorMessageDivs.forEach((div) => emptyErrorMessageDiv(div));
   formEl.reset();
 }
@@ -130,4 +153,4 @@ formControls.forEach((controlEl) => {
 form.addEventListener("submit", validateForm);
 resetButton.addEventListener("click", () => {
   refreshForm(form);
-})
+});
