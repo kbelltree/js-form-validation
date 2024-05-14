@@ -100,7 +100,6 @@ function notifyInvalidEntry(controlEl) {
 
   emptyErrorMessageDiv(errorMessageDiv);
   displayErrorMessage(errorMessageDiv, messagesArr);
-  controlEl.classList.remove("is-valid");
 }
 
 function validateEntry(e) {
@@ -112,8 +111,6 @@ function validateEntry(e) {
   }
   if (!controlEl.checkValidity() || !doPasswordsMatch) {
     notifyInvalidEntry(controlEl);
-  } else {
-    controlEl.classList.add("is-valid");
   }
 }
 
