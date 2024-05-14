@@ -1,0 +1,208 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --label-font: saddlebrown;
+  --input-font: dimgray;
+  --alert: rgb(205, 92, 92, 0.85);
+  --focus: rgb(184, 134, 11, 0.5);
+  --submit-btn: peru;
+  --submit-hover: saddlebrown;
+  --submit-active: sienna;
+  --reset-btn: burlywood;
+  --reset-hover: tan;
+  --reset-active: rosybrown;
+  --success: olivedrab;
+  --success-hover: darkolivegreen;
+  --success-active: olive;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  color: var(--label-font);
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+input,
+select {
+  font-size: 1rem;
+  color: var(--input-font);
+  background-color: white;
+  height: 2.25rem;
+  width: 20rem;
+  padding-left: 0.5rem;
+  border: 1.5px solid wheat;
+  border-radius: 5px;
+}
+
+select {
+  appearance: none;
+}
+
+p {
+  color: var(--alert);
+  font-size: 0.875rem;
+}
+
+button {
+  border-radius: 25px;
+  text-align: inherit;
+  background: none;
+  box-shadow: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font: inherit;
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  text-transform: capitalize;
+}
+
+input,
+select,
+button {
+  transition: all 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+div#message-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+#message-modal svg {
+  fill: var(--success);
+  width: 80%;
+}
+
+#message-modal h1 {
+  color: var(--success);
+}
+
+#message-modal p {
+  color: var(--input-font);
+  font-size: 1.5rem;
+}
+
+button#form-submit {
+  background: var(--submit-btn);
+}
+
+button#form-submit:hover {
+  background: var(--submit-hover);
+}
+
+button#form-submit:active {
+  background: var(--submit-active);
+}
+
+button#form-reset {
+  background: var(--reset-btn);
+}
+
+button#form-reset:hover {
+  background: var(--reset-hover);
+}
+
+button#form-reset:active {
+  background: var(--reset-active);
+}
+
+button#close {
+  background: var(--success);
+}
+
+button#close:hover {
+  background: var(--success-hover);
+}
+
+button#close:active {
+  background: var(--success-active);
+}
+
+div#form-container {
+  width: 400px;
+  background-color: seashell;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, auto);
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+
+div.email-container {
+  grid-area: 1 / 1 / 2 / -1;
+}
+
+div.country-container {
+  grid-area: 2 / 1 / 3 / -1;
+}
+
+div.zip-container {
+  grid-area: 3 / 1 / 4 / -1;
+}
+
+div.passwords-container {
+  grid-area: 4 / 1 / 5 / -1;
+}
+
+div.buttons-container {
+  grid-area: 5 / 2 / 6 / 3;
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  gap: 1.25rem;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+div.error-message {
+  word-wrap: break;
+  max-width: 20rem;
+}
+
+form > div > input:focus,
+form > div > select:focus {
+  outline: 3px solid var(--focus);
+}
+
+form > div > input:user-invalid,
+form > div > select:user-invalid {
+  border: 3px solid var(--alert);
+}
+
+form > div > input:user-valid,
+form > div > select:user-valid {
+  border: 3px solid var(--success);
+  background-color: rgb(107, 142, 35, 0.15);
+}
