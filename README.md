@@ -2,7 +2,7 @@
 
 ## The Odin Project: Form Validation with JavaScript
 
-<a href="https://kbelltree.github.io/js-form-validation">
+<a href="https://kbelltree.github.io/js-form-validation/">
 <div align="center"><img src="js-constraint-api-form-validation-k-belltree-2024.jpg" alt="JavaScript Constraint Form Validation Preview by Keiko S. 2024" width="60%" height="60%"></div>
 </a>
 
@@ -51,6 +51,8 @@ Success and Error Flash Message by [Natasha Girish on Dribble](https://dribbble.
 HTML Color Names by [W3Schools](https://www.w3schools.com/tags/ref_colornames.asp)
 
 Material Design Icons by [Pictogrammers](https://pictogrammers.com/library/mdi/)
+
+Searching Tool by [ChatGPT4](https://chatgpt.com)
 
 ### Referenced Tutorials
 
